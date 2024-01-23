@@ -32,6 +32,18 @@ export class CheckoutPageComponent {
 
   removeQuantity(product: Product): void {
     this.productService.removeQuantity(product)
+    this.subTotal = this.productService.getCartTotal()
+    this.total = this.subTotal + 10
     this.products = this.productService.getCartProducts()
+    this.products = this.productService.getCartProducts()
+    this.totalQuantity = this.productService.totalQuantity()
+  }
+
+  removeProduct(product: Product): void {
+    this.productService.removeProduct(product)
+    this.subTotal = this.productService.getCartTotal()
+    this.total = this.subTotal + 10
+    this.products = this.productService.getCartProducts()
+    this.totalQuantity = this.productService.totalQuantity()
   }
 }

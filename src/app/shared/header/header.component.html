@@ -57,9 +57,9 @@
 
           <div class="top-act__separate"></div>
 
-          <button class="top-act__btn">
+          <button class="top-act__btn" [routerLink]="['/checkout']" >
             <img src="./assets/icons/buy.svg" alt="" class="top-act__icon" />
-            <span class="top-act__title">{{ total | currency:'USD':'symbol':'1.2-2'  }}</span>
+            <span class="top-act__title">{{ total }}</span>
           </button>
         </div>
 

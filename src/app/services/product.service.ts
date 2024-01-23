@@ -18,7 +18,8 @@ export class ProductService {
       price: 47,
       image: './assets/img/product1.png',
       rate: 4.3,
-      quantity: 1,
+      quantity: 0,
+      liked: false,
     },
     {
       id: 2,
@@ -27,7 +28,8 @@ export class ProductService {
       price: 99.99,
       image: './assets/img/product2.png',
       rate: 3.4,
-      quantity: 1,
+      quantity: 0,
+      liked: false,
     },
     {
       id: 3,
@@ -36,7 +38,8 @@ export class ProductService {
       price: 38.65,
       image: './assets/img/product3.png',
       rate: 5.0,
-      quantity: 1,
+      quantity: 0,
+      liked: false,
     },
     {
       id: 4,
@@ -45,7 +48,8 @@ export class ProductService {
       price: 53,
       image: './assets/img/product4.png',
       rate: 4.4,
-      quantity: 1,
+      quantity: 0,
+      liked: false,
     },
     {
       id: 5,
@@ -54,7 +58,8 @@ export class ProductService {
       price: 99.99,
       image: './assets/img/product2.png',
       rate: 3.4,
-      quantity: 1,
+      quantity: 0,
+      liked: false,
     },
     {
       id: 6,
@@ -63,7 +68,8 @@ export class ProductService {
       price: 53,
       image: './assets/img/product3.png',
       rate: 4.4,
-      quantity: 1,
+      quantity: 0,
+      liked: false,
     },
     {
       id: 7,
@@ -72,7 +78,8 @@ export class ProductService {
       price: 47,
       image: './assets/img/product1.png',
       rate: 4.3,
-      quantity: 1,
+      quantity: 0,
+      liked: false,
     },
     {
       id: 8,
@@ -81,7 +88,8 @@ export class ProductService {
       price: 38.65,
       image: './assets/img/product3.png',
       rate: 5.0,
-      quantity: 1,
+      quantity: 0,
+      liked: false,
     },
     {
       id: 9,
@@ -90,7 +98,8 @@ export class ProductService {
       price: 99.99,
       image: './assets/img/product2.png',
       rate: 3.4,
-      quantity: 1,
+      quantity: 0,
+      liked: false,
     },
     {
       id: 10,
@@ -99,7 +108,8 @@ export class ProductService {
       price: 53,
       image: './assets/img/product4.png',
       rate: 4.4,
-      quantity: 1,
+      quantity: 0,
+      liked: false,
     },
   ]
   categories : Category[] = [
@@ -139,7 +149,7 @@ export class ProductService {
   }
 
   addToCart(product: Product | undefined): void {
-    if (product) {
+    if (product && !this.cart.includes(product)) {
       this.cart.push(product);
     }
   }
@@ -173,11 +183,15 @@ export class ProductService {
     return this.cart.length;
   }
 
-  private removeProduct(product: Product) {
+  public removeProduct(product: Product) {
     this.totalQuantity();
     this.getCartTotal()
     this.cart = this.cart.filter((item) => {
       return item.id !== product.id;
     });
+  }
+
+  isLiked(product: Product): void {
+    product.liked = !product.liked;
   }
 }

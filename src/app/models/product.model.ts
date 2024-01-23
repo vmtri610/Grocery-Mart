@@ -5,5 +5,6 @@ export type Product = {
     price: number,
     image: string,
     rate: number,
-    quantity: number
+    quantity: number,
+    liked: boolean
 }

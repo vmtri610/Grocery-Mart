@@ -5,7 +5,14 @@
     @for(product of product; track $index ) {
       <div class="product__item" >
         <img [src]="product.image" alt="" class="productList__img" [routerLink]="['/product']" (click)="view(product)">
-        <button class="product__like"><img src="./assets/icons/heart.svg" alt=""></button>
+        <button class="product__like" (click)="liked(product)">
+          @if(product.liked){
+            <img src="./assets/icons/red-heart.svg" alt="">
+          } @else
+          {
+            <img src="./assets/icons/heart.svg" alt="">
+          }
+        </button>
         <div class="product__text">
           <p class="product__name">{{ product.name }}</p>
           <span class="product__type">{{ product.type }}</span>

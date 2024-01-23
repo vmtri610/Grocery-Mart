@@ -20,6 +20,10 @@ export class ProductListComponent {
   constructor(private productService: ProductService) {
   }
 
+  liked(product: Product) {
+    this.productService.isLiked(product)
+  }
+
   view(product: Product) {
     this.productService.getViewedProducts(product) ;
   }

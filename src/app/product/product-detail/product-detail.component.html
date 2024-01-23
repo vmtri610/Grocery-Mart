@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <form action="" class="form">
+      <div class="form">
         <section class="prod-info">
           <h1 class="prod-info__heading">
             {{ product?.name}}
@@ -131,16 +131,23 @@
                   <p class="prod-info__total-price">{{product?.price | currency:'USD':'symbol':'1.2-2'}}</p>
                   <div class="prod-info__row">
                     <button
-                      class="btn btn--primary prod-info__add-to-cart" [routerLink]="['/checkout']" (click)="buyProduct(product)"
+                      class="btn btn--primary prod-info__add-to-cart" (click)="buyProduct(product)"
                     >
                       Add to cart
                     </button>
-                    <button class="like-btn prod-info__like-btn">
+                    <button class="like-btn prod-info__like-btn" (click)="liked(product)">
+                      @if (product?.liked){
+                        <img
+                          src="./assets/icons/red-heart.svg"
+                          alt=""
+                          class="like-btn__icon"
+                        />
+                      } @else{
                       <img
                         src="./assets/icons/heart.svg"
                         alt=""
                         class="like-btn__icon icon"
-                      />
+                      />}
                     </button>
                   </div>
                 </div>
@@ -149,6 +156,6 @@
 
           </div>
         </section>
-      </form>
+      </div>
   </div>
 </div>

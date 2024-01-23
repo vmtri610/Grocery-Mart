@@ -24,5 +24,14 @@ export class ProductDetailComponent {
 
   buyProduct(product: Product | undefined) {
     this.productService.addToCart(product);
+    if (product) {
+      this.productService.addQuantity(product)
+    }
+  }
+
+  liked(product: Product | undefined) {
+    if (product) {
+      this.productService.isLiked(product)
+    }
   }
 }

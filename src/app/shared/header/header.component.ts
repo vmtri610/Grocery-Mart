@@ -13,5 +13,5 @@ import {CurrencyPipe} from "@angular/common";
 export class HeaderComponent {
   constructor(private productService: ProductService) { }
 
-  total = this.productService.getCartTotal()
+  total = this.productService.totalQuantity()
 }

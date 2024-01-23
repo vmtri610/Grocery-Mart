@@ -3,7 +3,7 @@
 
   <div class="checkout-container">
     <div class="row">
-      <div>
+      <div class="left">
         <div class="cart-info">
           <div class="cart-info__list">
 
@@ -23,7 +23,7 @@
                     <p class="cart-item__price-wrap">
                       {{product.price |  currency:'USD':'symbol':'1.2-2'}} | <span class="cart-item__status">In Stock</span>
                     </p>
-                    <div class="cart-item__ctrl cart-item__ctrl--md-block">
+                    <div class="cart-item__ctrl">
                       <div class="cart-item__input">
                         {{ product.type }}
                         <img
@@ -51,9 +51,8 @@
                         Save
                       </button>
                       <button
-                        class="cart-item__ctrl-btn js-toggle"
-                        toggle-target="#delete-confirm"
-                      >
+                        (click)="removeProduct(product)"
+                        class="cart-item__ctrl-btn ">
                         <img src="./assets/icons/trash.svg" alt="" />
                         Delete
                       </button>
@@ -116,12 +115,12 @@
             <span>Estimated Total</span>
             <span>{{ total | currency:'USD':'symbol':'1.2-2'}}</span>
           </div>
-          <a href="" class="cart-info__next-btn btn btn--primary btn--rounded">
+          <div [routerLink]="''" class="cart-info__next-btn btn btn--primary btn--rounded">
             Continue to checkout
-          </a>
+          </div>
         </div>
         <div class="cart-info">
-          <a href="#!">
+          <div [routerLink]="''">
             <div class="gift-item">
               <div class="gift-item__icon-wrap">
                 <img src="./assets/icons/gift.svg" alt="" class="gift-item__icon" />
@@ -133,7 +132,7 @@
                 </p>
               </div>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </div>
