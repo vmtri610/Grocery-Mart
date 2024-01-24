@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Product} from "../models/product.model";
 import {Category} from "../models/category.model";
 
@@ -150,6 +150,8 @@ export class ProductService {
 
   addToCart(product: Product | undefined): void {
     if (product && !this.cart.includes(product)) {
+      console.log(product)
+      this.cartChanged.emit();
       this.cart.push(product);
     }
   }
@@ -194,4 +196,9 @@ export class ProductService {
   isLiked(product: Product): void {
     product.liked = !product.liked;
   }
+
+  // cartChanged function emit event to update total quantity
+  // in header component
+  cartChanged = new EventEmitter<void>();
+
 }

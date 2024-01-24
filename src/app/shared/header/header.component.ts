@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {ProductService} from "../../services/product.service";
 import {CurrencyPipe} from "@angular/common";
@@ -10,8 +10,15 @@ import {CurrencyPipe} from "@angular/common";
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   total = this.productService.totalQuantity()
+
+  ngOnInit(): void {
+    this.productService.cartChanged.subscribe(() => {
+      console.log('cart changed')
+      this.productService.totalQuantity()
+    })
+  }
 }
