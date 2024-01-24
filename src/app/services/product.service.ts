@@ -6,8 +6,12 @@ import {Category} from "../models/category.model";
   providedIn: 'root'
 })
 export class ProductService {
+  cartChanged = new EventEmitter<void>();
+  likeChanged = new EventEmitter<void>();
+
   viewProduct: Product | undefined
   cart: Product[] = []
+
   constructor() {   }
 
   products : Product[] = [
@@ -151,8 +155,9 @@ export class ProductService {
   addToCart(product: Product | undefined): void {
     if (product && !this.cart.includes(product)) {
       console.log(product)
-      this.cartChanged.emit();
       this.cart.push(product);
+      this.cartChanged.emit();
+      this.totalQuantity();
     }
   }
 
@@ -195,10 +200,17 @@ export class ProductService {
 
   isLiked(product: Product): void {
     product.liked = !product.liked;
+    this.likeChanged.emit();
+    this.totalLikeProducts();
   }
 
-  // cartChanged function emit event to update total quantity
-  // in header component
-  cartChanged = new EventEmitter<void>();
-
+  totalLikeProducts(): number {
+    let count = 0;
+    this.products.forEach((product) => {
+      if (product.liked) {
+        count += 1;
+      }
+    });
+    return count;
+  }
 }

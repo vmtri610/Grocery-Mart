@@ -10,15 +10,25 @@ import {CurrencyPipe} from "@angular/common";
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnInit {
-  constructor(private productService: ProductService) { }
+export class HeaderComponent {
+  totalProduct = 0;
+  totalLike = 0;
+  constructor(private productService: ProductService) {
+    this.totalProduct = this.productService.totalQuantity();
+    this.totalLike = this.productService.totalLikeProducts();
 
-  total = this.productService.totalQuantity()
-
-  ngOnInit(): void {
     this.productService.cartChanged.subscribe(() => {
-      console.log('cart changed')
-      this.productService.totalQuantity()
+      this.totalProduct = this.productService.totalQuantity();
+    });
+
+    this.productService.likeChanged.subscribe(() => {
+      this.totalLike = this.productService.totalLikeProducts();
     })
   }
+
+
+
+
+
+
 }

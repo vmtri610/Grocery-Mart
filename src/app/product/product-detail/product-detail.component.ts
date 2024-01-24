@@ -17,7 +17,7 @@ import {ProductService} from "../../services/product.service";
   styleUrl: './product-detail.component.scss'
 })
 export class ProductDetailComponent {
-  @Input() product!: Product | undefined;
+  product = this.productService.viewProduct;
 
   constructor(private productService: ProductService) {
   }

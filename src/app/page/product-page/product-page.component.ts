@@ -16,6 +16,5 @@ import {ProductService} from "../../services/product.service";
 })
 export class ProductPageComponent {
   constructor(private productService: ProductService) { }
-  productDetail = this.productService.viewProduct;
 
 }
